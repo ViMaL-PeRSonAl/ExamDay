@@ -1,0 +1,113 @@
+{
+  "student": {
+    "name": "Vimal J Mathew",
+    "department": "Computer Science & Engineering (AI & ML)",
+    "university": "APJ Abdul Kalam Technological University (KTU)",
+    "college": "VISAT Engineering College, Elanji",
+    "semester": "Semester 5 (S5)",
+    "rollNo": "30",
+    "studentId": "VIT24AM035"
+  },
+  "theoryExams": [
+    {
+      "id": "cn",
+      "code": "PCCST501",
+      "title": "Computer Network",
+      "slot": "A",
+      "date": "2026-11-23",
+      "day": "Monday",
+      "startTime": "13:30",
+      "endTime": "16:00",
+      "timeDisplay": "1:30 PM - 4:00 PM",
+      "duration": "2.5 Hours",
+      "gapInfo": "First Exam of Series",
+      "gapHighlight": false,
+      "colorAccent": "#6366F1",
+      "badge": "Core Theory"
+    },
+    {
+      "id": "daa",
+      "code": "PCCST502",
+      "title": "Design and Analysis of Algorithm",
+      "slot": "B",
+      "date": "2026-11-27",
+      "day": "Friday",
+      "startTime": "14:00",
+      "endTime": "16:30",
+      "timeDisplay": "2:00 PM - 4:30 PM",
+      "duration": "2.5 Hours",
+      "gapInfo": "3 Days Gap (24, 25, 26 Nov)",
+      "gapHighlight": false,
+      "colorAccent": "#06B6D4",
+      "badge": "Core Theory"
+    },
+    {
+      "id": "dlc",
+      "code": "PCCMT503",
+      "title": "Deep Learning Concepts",
+      "slot": "C",
+      "date": "2026-12-01",
+      "day": "Tuesday",
+      "startTime": "13:30",
+      "endTime": "16:00",
+      "timeDisplay": "1:30 PM - 4:00 PM",
+      "duration": "2.5 Hours",
+      "gapInfo": "3 Days Gap (28, 29, 30 Nov)",
+      "gapHighlight": false,
+      "colorAccent": "#EC4899",
+      "badge": "Specialization"
+    },
+    {
+      "id": "cv",
+      "code": "PBCMS04",
+      "title": "Introduction to Computer Vision",
+      "slot": "D",
+      "date": "2026-12-03",
+      "day": "Thursday",
+      "startTime": "13:30",
+      "endTime": "16:00",
+      "timeDisplay": "1:30 PM - 4:00 PM",
+      "duration": "2.5 Hours",
+      "gapInfo": "⚠️ Tight 1-Day Gap (Only 2nd Dec available!)",
+      "gapHighlight": true,
+      "colorAccent": "#F59E0B",
+      "badge": "Specialization"
+    },
+    {
+      "id": "spm",
+      "code": "PECST521",
+      "title": "Software Project Management",
+      "slot": "E",
+      "date": "2026-12-07",
+      "day": "Monday",
+      "startTime": "13:30",
+      "endTime": "16:00",
+      "timeDisplay": "1:30 PM - 4:00 PM",
+      "duration": "2.5 Hours",
+      "gapInfo": "3 Days Gap (4, 5, 6 Dec)",
+      "gapHighlight": false,
+      "colorAccent": "#10B981",
+      "badge": "Elective"
+    }
+  ],
+  "labExams": [
+    {
+      "id": "lab-window",
+      "code": "KTU-PRAC-S5",
+      "title": "S5 Practical / Lab Examination Window",
+      "dateRange": "09.11.2026 – 13.11.2026",
+      "status": "Expected / College Window",
+      "note": "9 - 13 aanee lab exam date paranjekkunnee. Exact day per batch depends on internal timetable.",
+      "colorAccent": "#8B5CF6"
+    },
+    {
+      "id": "lab-dl",
+      "code": "PCCML504 (Expected)",
+      "title": "Deep Learning / Practical AI Lab",
+      "dateRange": "Awaiting External Examiner Choice",
+      "status": "Date to be confirmed",
+      "note": "Subject to KTU external examiner appointment. Keep fair record and rough lab journals fully signed in advance.",
+      "colorAccent": "#F43F5E"
+    }
+  ]
+}

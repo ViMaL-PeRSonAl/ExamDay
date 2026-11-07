@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Exam Pack Checklist | Vimal J Mathew</title>
+  <link rel="stylesheet" href="css/clay.css">
+</head>
+<body>
+
+  <!-- Ambient Vibrant Aurora Canvas -->
+  <div class="aurora-bg">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- Claytonic Top Navigation -->
+    <header class="clay-nav">
+      <a href="index.html" class="brand-wrapper">
+        <div class="brand-icon">🎒</div>
+        <div>
+          <div class="brand-title">EXAM PACK CHECKLIST</div>
+          <div class="brand-subtitle">KTU S5 Readiness</div>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Overview</a></li>
+          <li><a href="schedule.html" class="nav-link">Timetable</a></li>
+          <li><a href="checklist.html" class="nav-link active">Checklist</a></li>
+          <li><a href="guidelines.html" class="nav-link">Guidelines</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Checklist Header Card -->
+    <div class="student-badge-card">
+      <div style="display: flex; align-items: center; gap: 18px;">
+        <img src="assets/vimal.jpg" alt="Vimal J Mathew" style="width: 64px; height: 64px; border-radius: 20px; object-fit: cover; object-position: top; border: 3px solid #fff; box-shadow: var(--clay-shadow-sm); flex-shrink: 0;">
+        <div>
+          <h1 style="font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 800;">Exam Day Bag Checklist</h1>
+          <p style="color: #64748b; font-size: 0.92rem; font-weight: 600; margin-top: 3px;">
+            Candidate: <strong>Vimal J Mathew (Roll 30)</strong> • Tap items to pack. Auto-saved locally.
+          </p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span class="pill-tag emerald" id="checklist-summary">0 of 8 Ready</span>
+        <button onclick="resetChecklist()" class="clay-btn" style="padding: 8px 16px; font-size: 0.82rem;">
+          🔄 Reset All
+        </button>
+      </div>
+    </div>
+
+    <!-- Practical & Viva Essentials (Immediate Need) -->
+    <div class="clay-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+        <h2 style="font-size: 1.2rem; font-weight: 800;">1. Practical Lab & Viva Essentials (Nov 9–13 Window)</h2>
+        <span class="pill-tag amber">Priority 1</span>
+      </div>
+      <p style="font-size: 0.86rem; color: #64748b; margin-bottom: 14px;">Required for entry into computing laboratories and external viva evaluation.</p>
+
+      <div class="checklist-container">
+        <div class="check-item" data-id="fair-record">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">Signed Fair Lab Record Book (Clean & Complete)</span>
+            <span class="check-desc">All program outputs, graphs, and faculty sign-offs must be verified before viva.</span>
+          </div>
+        </div>
+
+        <div class="check-item" data-id="rough-record">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">Rough Observation Journal & Code Worksheets</span>
+            <span class="check-desc">Deep Learning & Network experiment worksheets signed by the lab faculty-in-charge.</span>
+          </div>
+        </div>
+
+        <div class="check-item" data-id="college-id-lab">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">Physical VISAT College Student ID Card</span>
+            <span class="check-desc">Mandatory for verifying candidate identity (Roll: 30 • VIT24AM035).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- University Theory Essentials -->
+    <div class="clay-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; flex-wrap: wrap; gap: 6px;">
+        <h2 style="font-size: 1.2rem; font-weight: 800;">2. University Theory Exam Essentials (Nov 23 – Dec 7)</h2>
+        <span class="pill-tag emerald">Phase 2</span>
+      </div>
+      <p style="font-size: 0.86rem; color: #64748b; margin-bottom: 14px;">Carry strictly in a transparent pouch.</p>
+
+      <div class="checklist-container">
+        <div class="check-item" data-id="hall-ticket">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">KTU Hall Ticket (Clear Printout)</span>
+            <span class="check-desc">Downloaded from KTU student portal with registered courses PCCST501 through PECST521.</span>
+          </div>
+        </div>
+
+        <div class="check-item" data-id="pens">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">Blue or Black Ballpoint Pens (3+ Count)</span>
+            <span class="check-desc">KTU accepts only Blue or Black ink for answer scripts. Keep backups ready.</span>
+          </div>
+        </div>
+
+        <div class="check-item" data-id="pencil-ruler">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">Pencil, Eraser, Sharpener & 30cm Ruler</span>
+            <span class="check-desc">Required for Network topologies, DAA state graphs, and Deep Learning diagrams.</span>
+          </div>
+        </div>
+
+        <div class="check-item" data-id="calculator">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">KTU Approved Calculator (fx-991ES / fx-991MS)</span>
+            <span class="check-desc">Ensure non-programmable specification and tested battery levels.</span>
+          </div>
+        </div>
+
+        <div class="check-item" data-id="water-bottle">
+          <div class="check-box-clay">✔</div>
+          <div class="check-text">
+            <span class="check-title">Transparent Water Bottle</span>
+            <span class="check-desc">Without labels or stickers per KTU examination hall guidelines.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="clay-footer">
+      KTU S5 CSE (AI & ML) Exam Hub • VISAT Engineering College, Elanji
+    </footer>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
