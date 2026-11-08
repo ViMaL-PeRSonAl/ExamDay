@@ -93,20 +93,20 @@
   "labExams": [
     {
       "id": "lab-net",
-      "code": "CST507 / KTU-NET-LAB",
-      "title": "Computer Networks Lab",
+      "code": "PCCSL507",
+      "title": "Networks Lab",
       "dateRange": "17.11.2026, Tuesday",
       "status": "Confirmed Date",
-      "note": "Scheduled on 17th of November 2026. Keep completed and verified network lab fair records ready for external viva.",
+      "note": "KTU Course Code: PCCSL507. Socket programming via Linux system calls, protocol implementations (Stop-and-Wait, Go-Back-N), packet sniffing, and routing configuration.",
       "colorAccent": "#8B5CF6"
     },
     {
       "id": "lab-dl",
-      "code": "PCCML504 (Expected)",
-      "title": "Deep Learning / Practical AI Lab",
+      "code": "PCCML508",
+      "title": "Deep Learning Lab",
       "dateRange": "Awaiting External Examiner Choice",
       "status": "Date to be confirmed",
-      "note": "Subject to KTU external examiner appointment. Keep fair record and rough lab journals fully signed in advance.",
+      "note": "KTU Course Code: PCCML508. Artificial Neural Networks, Backpropagation, CNNs (MNIST/CIFAR-10), optimization/weight initializations, and sequence models (RNN/LSTM).",
       "colorAccent": "#F43F5E"
     }
   ]

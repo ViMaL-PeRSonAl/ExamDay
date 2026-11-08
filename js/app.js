@@ -14,39 +14,39 @@ const EXAM_DATA = {
     rollNo: "30",
     studentId: "VIT24AM035"
   },
-  // Unified chronology: Earliest exam is the Computer Networks Lab on 17th Nov!
+  // Unified chronology: Exactly 2 practical labs for KTU S5 CSE (AI & ML)
   allExams: [
     {
       id: "lab-net",
-      code: "CST507 / KTU-NET-LAB",
-      title: "Computer Networks Lab",
+      code: "PCCSL507",
+      title: "Networks Lab",
       type: "Practical Lab / Viva",
-      slot: "NET LAB",
+      slot: "PCCSL507",
       dateStr: "2026-11-17T09:30:00+05:30",
       endDateStr: "2026-11-17T16:30:00+05:30",
       day: "Tuesday",
       dateFormatted: "17 Nov 2026",
       time: "09:30 AM onwards",
-      note: "Confirmed on 17.11.2026. Nearest upcoming examination on schedule!",
+      note: "KTU Code: PCCSL507. Linux socket calls, protocol simulation & packet tracing.",
       accent: "#8B5CF6",
       isLab: true,
       badge: "Nearest Upcoming Exam"
     },
     {
       id: "lab-dl",
-      code: "PCCML504 (Expected)",
-      title: "Deep Learning & Practical AI Lab",
+      code: "PCCML508",
+      title: "Deep Learning Lab",
       type: "Practical Lab / Viva",
-      slot: "DL LAB",
-      dateStr: "2026-11-20T09:30:00+05:30", // Expected shortly around/after Networks lab
+      slot: "PCCML508",
+      dateStr: "2026-11-20T09:30:00+05:30",
       endDateStr: "2026-11-20T16:30:00+05:30",
-      day: "Expected Mid/Late Nov",
+      day: "Date TBA (Post Nov 17)",
       dateFormatted: "Mid/Late Nov 2026 (Approx after Net Lab)",
       time: "09:30 AM onwards",
-      note: "Date awaiting KTU External Examiner choice.",
+      note: "KTU Code: PCCML508. ANN Backprop, CNN classification, and PyTorch/TensorFlow implementations.",
       accent: "#F43F5E",
       isLab: true,
-      badge: "Date to be confirmed"
+      badge: "External Examiner Choice"
     },
     {
       id: "cn",
