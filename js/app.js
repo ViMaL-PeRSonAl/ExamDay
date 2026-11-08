@@ -14,20 +14,20 @@ const EXAM_DATA = {
     rollNo: "30",
     studentId: "VIT24AM035"
   },
-  // Unified chronology: Earliest exam is the S5 Practical Lab Exam!
+  // Unified chronology: Earliest exam is the Computer Networks Lab on 17th Nov!
   allExams: [
     {
-      id: "lab-window",
-      code: "KTU-PRAC-S5",
-      title: "S5 Practical / Lab Examination Window",
-      type: "Practical / Lab",
-      slot: "LAB 1",
-      dateStr: "2026-11-09T09:30:00+05:30",
-      endDateStr: "2026-11-09T16:30:00+05:30",
-      day: "Monday – Friday",
-      dateFormatted: "09 – 13 Nov 2026",
+      id: "lab-net",
+      code: "CST507 / KTU-NET-LAB",
+      title: "Computer Networks Lab",
+      type: "Practical Lab / Viva",
+      slot: "NET LAB",
+      dateStr: "2026-11-17T09:30:00+05:30",
+      endDateStr: "2026-11-17T16:30:00+05:30",
+      day: "Tuesday",
+      dateFormatted: "17 Nov 2026",
       time: "09:30 AM onwards",
-      note: "9 - 13 aanee lab exam date paranjekkunnee. Earliest upcoming exam on schedule!",
+      note: "Confirmed on 17.11.2026. Nearest upcoming examination on schedule!",
       accent: "#8B5CF6",
       isLab: true,
       badge: "Nearest Upcoming Exam"
@@ -37,13 +37,13 @@ const EXAM_DATA = {
       code: "PCCML504 (Expected)",
       title: "Deep Learning & Practical AI Lab",
       type: "Practical Lab / Viva",
-      slot: "LAB 2",
-      dateStr: "2026-11-16T09:30:00+05:30", // Expected within ~1 week of 1st lab window
-      endDateStr: "2026-11-16T16:30:00+05:30",
-      day: "Expected Nov 14 – Nov 20",
-      dateFormatted: "Mid Nov 2026 (Approx ~1 week after Lab 1)",
+      slot: "DL LAB",
+      dateStr: "2026-11-20T09:30:00+05:30", // Expected shortly around/after Networks lab
+      endDateStr: "2026-11-20T16:30:00+05:30",
+      day: "Expected Mid/Late Nov",
+      dateFormatted: "Mid/Late Nov 2026 (Approx after Net Lab)",
       time: "09:30 AM onwards",
-      note: "Date awaiting KTU External Examiner choice. Expected within 1 week of initial lab window.",
+      note: "Date awaiting KTU External Examiner choice.",
       accent: "#F43F5E",
       isLab: true,
       badge: "Date to be confirmed"

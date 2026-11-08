@@ -92,12 +92,12 @@
   ],
   "labExams": [
     {
-      "id": "lab-window",
-      "code": "KTU-PRAC-S5",
-      "title": "S5 Practical / Lab Examination Window",
-      "dateRange": "09.11.2026 – 13.11.2026",
-      "status": "Expected / College Window",
-      "note": "9 - 13 aanee lab exam date paranjekkunnee. Exact day per batch depends on internal timetable.",
+      "id": "lab-net",
+      "code": "CST507 / KTU-NET-LAB",
+      "title": "Computer Networks Lab",
+      "dateRange": "17.11.2026, Tuesday",
+      "status": "Confirmed Date",
+      "note": "Scheduled on 17th of November 2026. Keep completed and verified network lab fair records ready for external viva.",
       "colorAccent": "#8B5CF6"
     },
     {
