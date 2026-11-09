@@ -114,6 +114,30 @@
   letter-spacing: 0.04em;
 }
 
+/* EXAM DAYS THAT ARE PASSED: Keep exam accent but show done state */
+.cal-cell.is-exam.is-passed {
+  background: linear-gradient(135deg, #fff1f2, #fce7f3) !important;
+  border-color: var(--cell-accent, #9f1239) !important;
+  box-shadow: 0 2px 10px rgba(225, 29, 72, 0.15) !important;
+  opacity: 0.82;
+}
+
+.cal-cell.is-exam.is-passed .cal-day-num {
+  color: var(--cell-accent, #9f1239) !important;
+  text-decoration: line-through;
+}
+
+.cal-cell.is-exam.is-passed .cal-cell-badge {
+  background: var(--cell-accent, #e11d48) !important;
+  color: #fff !important;
+  opacity: 0.75;
+}
+
+.cal-cell.is-exam.is-passed::after {
+  content: "✔ EXAM DONE";
+  color: var(--cell-accent, #e11d48);
+}
+
 .cal-day-num {
   font-family: var(--font-heading);
   font-size: 1.05rem;

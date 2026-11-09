@@ -450,9 +450,11 @@ function resetChecklist() {
 
 // 4. Dynamic Auto-State Updater for Static Calendar Grids on study-plan.html
 function updateStaticCalendarPastStates() {
-  const todayStr = formatDateISO(new Date());
-  
-  // Find all calendar cells with numbers in study-plan.html
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayStr = formatDateISO(today);
+
+  // Find all non-empty calendar cells in study-plan.html calendar sections
   const cells = document.querySelectorAll(".calendar-view-card .cal-cell:not(.empty)");
   if (!cells.length) return;
 
@@ -460,19 +462,33 @@ function updateStaticCalendarPastStates() {
     const dayNumEl = cell.querySelector(".cal-day-num");
     if (!dayNumEl) return;
     const dayNum = parseInt(dayNumEl.textContent.trim(), 10);
-    
-    // Check if cell belongs to Nov or Dec
-    const isNov = cell.closest(".calendar-view-card").textContent.includes("November");
-    const mStr = isNov ? "11" : "12";
-    const dateKey = `2026-${mStr}-${String(dayNum).padStart(2, '0')}`;
+    if (isNaN(dayNum)) return;
+
+    // Use data-date attribute if set, otherwise infer from card month text
+    let dateKey = cell.getAttribute("data-date");
+    if (!dateKey) {
+      const cardText = cell.closest(".calendar-view-card").textContent;
+      const isNov = cardText.includes("November");
+      const mStr = isNov ? "11" : "12";
+      dateKey = `2026-${mStr}-${String(dayNum).padStart(2, '0')}`;
+    }
+
+    const isExam = cell.classList.contains("is-exam");
 
     if (dateKey < todayStr) {
+      // Past day — mark passed, but keep exam visual if it's an exam
       cell.classList.add("is-passed");
       cell.classList.remove("is-today-cell");
     } else if (dateKey === todayStr) {
+      // Today
       cell.classList.add("is-today-cell");
       cell.classList.remove("is-passed");
+      if (isExam) {
+        // If today is an exam day, keep exam styling
+        cell.classList.remove("is-today-cell");
+      }
     } else {
+      // Future
       cell.classList.remove("is-passed");
       cell.classList.remove("is-today-cell");
     }

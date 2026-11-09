@@ -601,6 +601,13 @@ h1, h2, h3, h4, .brand-title, .countdown-num, .slot-circle, .timeline-day-num {
   border-left: 8px solid var(--node-accent, #4f46e5);
 }
 
+/* Exam days that are passed keep their accent left border, not plain red */
+.day-node.is-exam-day.is-passed {
+  border-left: 8px solid var(--node-accent, #4f46e5) !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(255,241,242,0.9)) !important;
+  opacity: 0.85;
+}
+
 .day-node.is-study-day {
   border-left: 8px solid #059669;
 }
