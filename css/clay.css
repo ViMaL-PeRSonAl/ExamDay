@@ -962,3 +962,132 @@ h1, h2, h3, h4, .brand-title, .countdown-num, .slot-circle, .timeline-day-num {
     font-size: 0.78rem;
   }
 }
+/* Calendar Matrix Styles for Master Plan */
+.calendar-view-card {
+  background: var(--clay-card-bg);
+  backdrop-filter: blur(14px);
+  border: 2px solid var(--clay-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--clay-shadow-md);
+  padding: 24px;
+  margin-bottom: 28px;
+}
+
+.calendar-month-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendar-grid-table {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-header-day {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 6px 0;
+}
+
+.cal-cell {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  padding: 10px 8px;
+  min-height: 86px;
+  box-shadow: var(--clay-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-tactile);
+}
+
+.cal-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--clay-shadow-md);
+}
+
+.cal-cell.empty {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  min-height: auto;
+}
+
+.cal-cell.is-exam {
+  border: 2px solid var(--cell-accent, #4f46e5);
+  background: linear-gradient(135deg, #ffffff, rgba(240, 244, 255, 0.95));
+}
+
+.cal-cell.is-prep {
+  border-left: 4px solid var(--cell-accent, #059669);
+}
+
+.cal-cell.is-today-cell {
+  border: 2px solid #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.cal-day-num {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.cal-cell-badge {
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  line-height: 1.2;
+  margin-top: 4px;
+  text-align: left;
+}
+
+.plan-rule-pill {
+  background: rgba(79, 70, 229, 0.08);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  padding: 12px 18px;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  color: #334155;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.plan-rule-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+/* Mobile Calendar Scroll */
+@media (max-width: 768px) {
+  .calendar-grid-table {
+    gap: 4px;
+  }
+  .cal-cell {
+    padding: 6px 4px;
+    min-height: 72px;
+  }
+  .cal-day-num {
+    font-size: 0.88rem;
+  }
+  .cal-cell-badge {
+    font-size: 0.58rem;
+    padding: 1px 3px;
+  }
+}
