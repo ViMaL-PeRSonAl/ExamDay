@@ -888,15 +888,15 @@ h1, h2, h3, h4, .brand-title, .countdown-num, .slot-circle, .timeline-day-num {
   .nav-links {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 4px;
   }
 
   .nav-link {
-    padding: 8px 6px;
-    font-size: 0.78rem;
+    padding: 8px 4px;
+    font-size: 0.72rem;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .hero-countdown-wrap {
