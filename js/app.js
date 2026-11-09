@@ -1,133 +1,170 @@
 /**
- * EXAM COMPANION - LOGIC & REACTIVE STATE
- * Handles countdown, chronology (Labs first, then DL Lab, then Theory),
- * checklist persistence, and Google Calendar links.
+ * EXAM COMPANION - FULL CALENDAR TIMELINE & STUDY PLANNER LOGIC
+ * Manages daily continuous timeline from Nov 9 to Dec 7, 2026.
+ * Tracks gaps, today indicator, editable daily plans saved to localStorage.
  */
 
-const EXAM_DATA = {
-  student: {
-    name: "Vimal J Mathew",
-    department: "CSE (AI & ML)",
-    university: "APJ Abdul Kalam Technological University (KTU)",
-    college: "VISAT Engineering College, Elanji",
-    semester: "Semester 5 (S5)",
-    rollNo: "30",
-    studentId: "VIT24AM035"
-  },
-  // Unified chronology: Exactly 2 practical labs for KTU S5 CSE (AI & ML)
-  allExams: [
-    {
-      id: "lab-net",
-      code: "PCCSL507",
+const TIMELINE_CONFIG = {
+  startDate: "2026-11-09",
+  endDate: "2026-12-07",
+  exams: {
+    "2026-11-17": {
       title: "Networks Lab",
-      type: "Practical Lab / Viva",
+      code: "PCCSL507",
       slot: "PCCSL507",
-      dateStr: "2026-11-17T09:30:00+05:30",
-      endDateStr: "2026-11-17T16:30:00+05:30",
-      day: "Tuesday",
-      dateFormatted: "17 Nov 2026",
       time: "09:30 AM onwards",
-      note: "KTU Code: PCCSL507. Linux socket calls, protocol simulation & packet tracing.",
+      type: "Practical Exam",
+      venue: "VISAT Network Lab",
       accent: "#8B5CF6",
-      isLab: true,
-      badge: "Nearest Upcoming Exam"
+      isExam: true,
+      badge: "Practical Exam 1"
     },
-    {
-      id: "lab-dl",
-      code: "PCCML508",
+    "2026-11-20": {
       title: "Deep Learning Lab",
-      type: "Practical Lab / Viva",
+      code: "PCCML508",
       slot: "PCCML508",
-      dateStr: "2026-11-20T09:30:00+05:30",
-      endDateStr: "2026-11-20T16:30:00+05:30",
-      day: "Friday",
-      dateFormatted: "20 Nov 2026",
       time: "09:30 AM onwards",
-      note: "Confirmed on 20.11.2026, Friday. ANN Backprop, CNN classification, and PyTorch/TensorFlow implementations.",
+      type: "Practical Exam",
+      venue: "VISAT AI Lab",
       accent: "#F43F5E",
-      isLab: true,
-      badge: "20 Nov Confirmed"
+      isExam: true,
+      badge: "Practical Exam 2"
     },
-    {
-      id: "cn",
-      code: "PCCST501",
+    "2026-11-23": {
       title: "Computer Network",
-      type: "Theory (Slot A)",
-      slot: "A",
-      dateStr: "2026-11-23T13:30:00+05:30",
-      endDateStr: "2026-11-23T16:00:00+05:30",
-      day: "Monday",
-      dateFormatted: "23 Nov 2026",
+      code: "PCCST501",
+      slot: "Slot A",
       time: "1:30 PM - 4:00 PM",
-      gap: "Theory Series Opener",
+      type: "University Theory",
+      venue: "VISAT Exam Hall",
       accent: "#6366F1",
-      badge: "Slot A"
+      isExam: true,
+      badge: "Theory Series Opener"
     },
-    {
-      id: "daa",
-      code: "PCCST502",
+    "2026-11-27": {
       title: "Design and Analysis of Algorithm",
-      type: "Theory (Slot B)",
-      slot: "B",
-      dateStr: "2026-11-27T14:00:00+05:30",
-      endDateStr: "2026-11-27T16:30:00+05:30",
-      day: "Friday",
-      dateFormatted: "27 Nov 2026",
+      code: "PCCST502",
+      slot: "Slot B",
       time: "2:00 PM - 4:30 PM",
-      gap: "3 Days Gap (24, 25, 26 Nov)",
-      accent: "#06B6D4",
-      badge: "Slot B"
+      type: "University Theory",
+      venue: "VISAT Exam Hall",
+      accent: "#0284c7",
+      isExam: true,
+      badge: "Slot B (Friday Timing)"
     },
-    {
-      id: "dlc",
-      code: "PCCMT503",
+    "2026-12-01": {
       title: "Deep Learning Concepts",
-      type: "Theory (Slot C)",
-      slot: "C",
-      dateStr: "2026-12-01T13:30:00+05:30",
-      endDateStr: "2026-12-01T16:00:00+05:30",
-      day: "Tuesday",
-      dateFormatted: "01 Dec 2026",
+      code: "PCCMT503",
+      slot: "Slot C",
       time: "1:30 PM - 4:00 PM",
-      gap: "3 Days Gap (28, 29, 30 Nov)",
-      accent: "#EC4899",
+      type: "University Theory",
+      venue: "VISAT Exam Hall",
+      accent: "#ec4899",
+      isExam: true,
       badge: "Slot C"
     },
-    {
-      id: "cv",
-      code: "PBCMS04",
+    "2026-12-03": {
       title: "Introduction to Computer Vision",
-      type: "Theory (Slot D)",
-      slot: "D",
-      dateStr: "2026-12-03T13:30:00+05:30",
-      endDateStr: "2026-12-03T16:00:00+05:30",
-      day: "Thursday",
-      dateFormatted: "03 Dec 2026",
+      code: "PBCMS04",
+      slot: "Slot D",
       time: "1:30 PM - 4:00 PM",
-      gap: "⚠️ Tight 1-Day Revision Gap (Only 2nd Dec available)",
-      isTight: true,
-      accent: "#F59E0B",
-      badge: "Slot D"
+      type: "University Theory",
+      venue: "VISAT Exam Hall",
+      accent: "#d97706",
+      isExam: true,
+      isTightGap: true,
+      badge: "Slot D (Tight 1-Day Gap!)"
     },
-    {
-      id: "spm",
-      code: "PECST521",
+    "2026-12-07": {
       title: "Software Project Management",
-      type: "Theory (Slot E)",
-      slot: "E",
-      dateStr: "2026-12-07T13:30:00+05:30",
-      endDateStr: "2026-12-07T16:00:00+05:30",
-      day: "Monday",
-      dateFormatted: "07 Dec 2026",
+      code: "PECST521",
+      slot: "Slot E",
       time: "1:30 PM - 4:00 PM",
-      gap: "3 Days Gap (4, 5, 6 Dec)",
-      accent: "#10B981",
-      badge: "Slot E"
+      type: "University Theory",
+      venue: "VISAT Exam Hall",
+      accent: "#059669",
+      isExam: true,
+      badge: "Final Theory Paper"
     }
-  ]
+  }
 };
 
-// 1. Live Countdown Logic Targeting the true nearest exam (Lab Exam Nov 9th)
+// Target countdown nearest exam list
+const ALL_EXAMS_LIST = [
+  {
+    id: "lab-net",
+    title: "Networks Lab (PCCSL507)",
+    dateStr: "2026-11-17T09:30:00+05:30",
+    dateFormatted: "17 Nov 2026",
+    day: "Tuesday",
+    time: "09:30 AM onwards",
+    type: "PRACTICAL LAB / VIVA"
+  },
+  {
+    id: "lab-dl",
+    title: "Deep Learning Lab (PCCML508)",
+    dateStr: "2026-11-20T09:30:00+05:30",
+    dateFormatted: "20 Nov 2026",
+    day: "Friday",
+    time: "09:30 AM onwards",
+    type: "PRACTICAL LAB / VIVA"
+  },
+  {
+    id: "cn",
+    title: "Computer Network (PCCST501)",
+    dateStr: "2026-11-23T13:30:00+05:30",
+    dateFormatted: "23 Nov 2026",
+    day: "Monday",
+    time: "1:30 PM - 4:00 PM",
+    type: "UNIVERSITY THEORY"
+  },
+  {
+    id: "daa",
+    title: "Design & Analysis of Algorithm (PCCST502)",
+    dateStr: "2026-11-27T14:00:00+05:30",
+    dateFormatted: "27 Nov 2026",
+    day: "Friday",
+    time: "2:00 PM - 4:30 PM",
+    type: "UNIVERSITY THEORY"
+  },
+  {
+    id: "dlc",
+    title: "Deep Learning Concepts (PCCMT503)",
+    dateStr: "2026-12-01T13:30:00+05:30",
+    dateFormatted: "01 Dec 2026",
+    day: "Tuesday",
+    time: "1:30 PM - 4:00 PM",
+    type: "UNIVERSITY THEORY"
+  },
+  {
+    id: "cv",
+    title: "Introduction to Computer Vision (PBCMS04)",
+    dateStr: "2026-12-03T13:30:00+05:30",
+    dateFormatted: "03 Dec 2026",
+    day: "Thursday",
+    time: "1:30 PM - 4:00 PM",
+    type: "UNIVERSITY THEORY"
+  },
+  {
+    id: "spm",
+    title: "Software Project Management (PECST521)",
+    dateStr: "2026-12-07T13:30:00+05:30",
+    dateFormatted: "07 Dec 2026",
+    day: "Monday",
+    time: "1:30 PM - 4:00 PM",
+    type: "UNIVERSITY THEORY"
+  }
+];
+
+// Helper: Format Date string YYYY-MM-DD
+function formatDateISO(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+// 1. Live Countdown for Overview & Timetable top
 function initCountdown() {
   const daysEl = document.getElementById("days");
   const hoursEl = document.getElementById("hours");
@@ -141,22 +178,12 @@ function initCountdown() {
 
   function update() {
     const now = new Date().getTime();
-    
-    // Nearest upcoming exam across both practical and theory
-    let nextExam = EXAM_DATA.allExams.find(ex => new Date(ex.dateStr).getTime() > now);
-    if (!nextExam) {
-      nextExam = EXAM_DATA.allExams[0];
-    }
+    let nextExam = ALL_EXAMS_LIST.find(ex => new Date(ex.dateStr).getTime() > now);
+    if (!nextExam) nextExam = ALL_EXAMS_LIST[0];
 
-    if (targetLabelEl) {
-      targetLabelEl.textContent = `${nextExam.title}`;
-    }
-    if (targetDateEl) {
-      targetDateEl.textContent = `${nextExam.day} • ${nextExam.dateFormatted} (${nextExam.time})`;
-    }
-    if (targetTypeEl) {
-      targetTypeEl.textContent = nextExam.type.toUpperCase();
-    }
+    if (targetLabelEl) targetLabelEl.textContent = nextExam.title;
+    if (targetDateEl) targetDateEl.textContent = `${nextExam.day} • ${nextExam.dateFormatted} (${nextExam.time})`;
+    if (targetTypeEl) targetTypeEl.textContent = nextExam.type;
 
     const targetTime = new Date(nextExam.dateStr).getTime();
     const diff = targetTime - now;
@@ -184,7 +211,194 @@ function initCountdown() {
   setInterval(update, 1000);
 }
 
-// 2. Checklist State Handler
+// 2. Continuous Day-by-Day Calendar Timeline Generator
+function initCalendarTimeline() {
+  const container = document.getElementById("timeline-road-container");
+  if (!container) return;
+
+  const savedPlans = JSON.parse(localStorage.getItem("vimal_study_plans") || "{}");
+
+  const start = new Date(TIMELINE_CONFIG.startDate + "T00:00:00");
+  const end = new Date(TIMELINE_CONFIG.endDate + "T00:00:00");
+  const todayStr = formatDateISO(new Date());
+
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  let html = "";
+  let curr = new Date(start);
+
+  while (curr <= end) {
+    const dateKey = formatDateISO(curr);
+    const dayName = daysOfWeek[curr.getDay()];
+    const monthName = months[curr.getMonth()];
+    const dayNum = curr.getDate();
+
+    const exam = TIMELINE_CONFIG.exams[dateKey];
+    const isToday = (dateKey === todayStr);
+
+    // Calculate next exam from this specific day
+    const nextExamEntry = Object.entries(TIMELINE_CONFIG.exams).find(([d]) => d > dateKey);
+    let nextExamDistanceText = "";
+    if (nextExamEntry && !exam) {
+      const nextDate = new Date(nextExamEntry[0] + "T00:00:00");
+      const diffDays = Math.round((nextDate - curr) / (1000 * 60 * 60 * 24));
+      nextExamDistanceText = `${diffDays} Day${diffDays > 1 ? 's' : ''} until ${nextExamEntry[1].title}`;
+    }
+
+    const isTight = (dateKey === "2026-12-02"); // The single revision day between DL and Vision!
+
+    // Determine card classes
+    let cardClass = "day-node";
+    if (isToday) cardClass += " is-today";
+    if (exam) {
+      cardClass += " is-exam-day";
+    } else {
+      cardClass += " is-study-day";
+    }
+    if (isTight) cardClass += " is-tight-gap";
+
+    const customPlan = savedPlans[dateKey] || { text: "", done: false };
+
+    html += `
+      <div class="${cardClass}" id="day-${dateKey}" style="--node-accent: ${exam ? exam.accent : '#059669'};">
+        <div class="day-node-header">
+          <div class="day-date-group">
+            <div class="date-badge">
+              <div class="date-badge-day">${dayName}</div>
+              <div class="date-badge-num">${dayNum}</div>
+              <div style="font-size:0.68rem; font-weight:700; color:#64748b;">${monthName}</div>
+            </div>
+            <div class="day-info-text">
+              <h3>
+                ${exam ? `⚡ ${exam.title} (${exam.code})` : (isTight ? `⚠️ Critical Revision Buffer: Computer Vision` : `📖 Study & Preparation Day`)}
+                ${isToday ? `<span class="pill-tag emerald" style="font-size:0.75rem; padding:2px 10px;">🌟 TODAY</span>` : ''}
+              </h3>
+              <p>
+                ${exam ? `⏰ <strong>${exam.time}</strong> • 🏛️ ${exam.venue} • ${exam.slot}` : (nextExamDistanceText ? `⏳ <strong>${nextExamDistanceText}</strong>` : '🎯 Final Preparation Buffer')}
+              </p>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${exam ? `<span class="pill-tag" style="background:${exam.accent}20; color:${exam.accent}; border-color:${exam.accent}40;">${exam.badge}</span>` : `<span class="pill-tag emerald">Study Session</span>`}
+            ${exam ? `<button onclick="generateGCalFromDate('${dateKey}')" class="clay-btn" style="padding:6px 14px; font-size:0.78rem;">🗓️ GCal</button>` : ''}
+          </div>
+        </div>
+
+        <!-- Interactive Study Planner Block -->
+        <div class="day-planner-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <div style="font-size:0.82rem; font-weight:700; color:#475569;">
+              📝 <strong>Day Plan & Goal:</strong>
+            </div>
+            <!-- Quick Subject Tags -->
+            <div class="planner-quick-tags">
+              <span style="font-size:0.72rem; color:#94a3b8; font-weight:700;">Quick add:</span>
+              <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'Networks')">Networks</button>
+              <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'DAA Algorithms')">DAA</button>
+              <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'Deep Learning')">Deep Learning</button>
+              <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'Computer Vision')">Vision</button>
+              <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'SPM')">SPM</button>
+            </div>
+          </div>
+
+          <div class="planner-input-row">
+            <input type="text" 
+                   id="plan-input-${dateKey}" 
+                   class="planner-input" 
+                   placeholder="${exam ? 'Morning revision / formula checklist before entering hall...' : 'What will you master today? (e.g. Module 1-2 + Lab Record)...'}"
+                   value="${escapeHtml(customPlan.text)}"
+                   oninput="handlePlanChange('${dateKey}', this.value)"
+            />
+            <button class="clay-btn ${customPlan.done ? 'primary' : ''}" 
+                    id="plan-check-${dateKey}" 
+                    onclick="togglePlanDone('${dateKey}')" 
+                    style="padding: 10px 18px; font-size: 0.85rem;"
+                    title="Mark today's target achieved">
+              <span>${customPlan.done ? '✅ Goal Achieved' : '⭕ Mark Done'}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Increment 1 day
+    curr.setDate(curr.getDate() + 1);
+  }
+
+  container.innerHTML = html;
+}
+
+// Study Planner State Handlers
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function handlePlanChange(dateKey, text) {
+  const savedPlans = JSON.parse(localStorage.getItem("vimal_study_plans") || "{}");
+  if (!savedPlans[dateKey]) savedPlans[dateKey] = { text: "", done: false };
+  savedPlans[dateKey].text = text;
+  localStorage.setItem("vimal_study_plans", JSON.stringify(savedPlans));
+  updateTotalPlanCount();
+}
+
+function addQuickGoal(dateKey, subjectTag) {
+  const input = document.getElementById(`plan-input-${dateKey}`);
+  if (!input) return;
+  const current = input.value.trim();
+  const addition = `[${subjectTag}] `;
+  if (!current.includes(addition)) {
+    input.value = current ? `${addition}${current}` : `${addition}Module revision`;
+    handlePlanChange(dateKey, input.value);
+  }
+}
+
+function togglePlanDone(dateKey) {
+  const savedPlans = JSON.parse(localStorage.getItem("vimal_study_plans") || "{}");
+  if (!savedPlans[dateKey]) savedPlans[dateKey] = { text: "", done: false };
+  savedPlans[dateKey].done = !savedPlans[dateKey].done;
+  localStorage.setItem("vimal_study_plans", JSON.stringify(savedPlans));
+
+  const btn = document.getElementById(`plan-check-${dateKey}`);
+  if (btn) {
+    if (savedPlans[dateKey].done) {
+      btn.classList.add("primary");
+      btn.innerHTML = "<span>✅ Goal Achieved</span>";
+    } else {
+      btn.classList.remove("primary");
+      btn.innerHTML = "<span>⭕ Mark Done</span>";
+    }
+  }
+  updateTotalPlanCount();
+}
+
+function updateTotalPlanCount() {
+  const savedPlans = JSON.parse(localStorage.getItem("vimal_study_plans") || "{}");
+  const countEl = document.getElementById("planned-goals-count");
+  if (!countEl) return;
+  const total = Object.values(savedPlans).filter(p => p.text && p.text.trim().length > 0).length;
+  const completed = Object.values(savedPlans).filter(p => p.text && p.done).length;
+  countEl.textContent = `${completed}/${total} Goals Done`;
+}
+
+// Google Calendar direct link from dateKey
+function generateGCalFromDate(dateKey) {
+  const exam = TIMELINE_CONFIG.exams[dateKey];
+  if (!exam) return;
+  const title = encodeURIComponent(`KTU S5 Exam: ${exam.title} (${exam.code})`);
+  const details = encodeURIComponent(`Exam Slot: ${exam.slot}\nVenue: ${exam.venue}\nTime: ${exam.time}\nCandidate: Vimal J Mathew (Roll: 30)`);
+  const location = encodeURIComponent("VISAT Engineering College, Elanji");
+  
+  // Create start and end ISO
+  const startIso = `${dateKey.replace(/-/g, '')}T040000Z`; // approx morning UTC
+  const endIso = `${dateKey.replace(/-/g, '')}T110000Z`;
+  
+  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startIso}/${endIso}&details=${details}&location=${location}`;
+  window.open(gcalUrl, '_blank');
+}
+
+// Checklist State Handler
 function initChecklist() {
   const items = document.querySelectorAll(".check-item");
   if (!items.length) return;
@@ -223,23 +437,10 @@ function resetChecklist() {
   updateChecklistCounter();
 }
 
-// 3. Google Calendar
-function generateCalendarEvent(subjectId) {
-  const exam = EXAM_DATA.allExams.find(e => e.id === subjectId);
-  if (!exam) return;
-
-  const title = encodeURIComponent(`KTU S5 Exam: ${exam.title} (${exam.code})`);
-  const details = encodeURIComponent(`Type: ${exam.type}\nCandidate: Vimal J Mathew (Roll: 30, VIT24AM035)\nCollege: VISAT Engineering College, Elanji\nTime: ${exam.time}`);
-  const location = encodeURIComponent("VISAT Engineering College, Elanji");
-  
-  const start = new Date(exam.dateStr).toISOString().replace(/-|:|\.\d\d\d/g,"");
-  const end = new Date(exam.endDateStr).toISOString().replace(/-|:|\.\d\d\d/g,"");
-  
-  const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
-  window.open(gcalUrl, '_blank');
-}
-
+// Global initialization
 document.addEventListener("DOMContentLoaded", () => {
   initCountdown();
+  initCalendarTimeline();
   initChecklist();
+  updateTotalPlanCount();
 });

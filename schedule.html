@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Exam Timetable & Schedule | Vimal J Mathew</title>
+  <title>Continuous Exam Roadmap & Daily Study Planner | Vimal J Mathew</title>
   <link rel="stylesheet" href="css/clay.css">
 </head>
 <body>
@@ -22,275 +22,83 @@
       <a href="index.html" class="brand-wrapper">
         <div class="brand-icon">📅</div>
         <div>
-          <div class="brand-title">EXAM TIMETABLE</div>
+          <div class="brand-title">EXAM ROADMAP & PLANNER</div>
           <div class="brand-subtitle">KTU S5 CSE (AI & ML)</div>
         </div>
       </a>
       <nav>
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link">Overview</a></li>
-          <li><a href="schedule.html" class="nav-link active">Timetable</a></li>
+          <li><a href="schedule.html" class="nav-link active">Roadmap & Plan</a></li>
           <li><a href="checklist.html" class="nav-link">Checklist</a></li>
           <li><a href="guidelines.html" class="nav-link">Guidelines</a></li>
         </ul>
       </nav>
     </header>
 
-    <!-- Page Header (Full Width Responsive) -->
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+    <!-- Top Identity & Actions Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 22px;">
       <div style="display: flex; align-items: center; gap: 16px;">
         <img src="assets/vimal.jpg" alt="Vimal J Mathew" style="width: 58px; height: 58px; border-radius: 18px; object-fit: cover; object-position: top; border: 3px solid #fff; box-shadow: var(--clay-shadow-sm); flex-shrink: 0;">
         <div>
-          <h1 style="font-size: clamp(1.4rem, 2.8vw, 1.9rem); font-weight: 800; line-height: 1.2;">KTU S5 Complete Schedule</h1>
+          <h1 style="font-size: clamp(1.4rem, 2.8vw, 1.9rem); font-weight: 800; line-height: 1.2;">Continuous Exam Timeline & Daily Plan</h1>
           <p style="color: #64748b; font-weight: 600; font-size: 0.92rem; margin-top: 2px;">
-            Candidate: <strong>Vimal J Mathew (Roll 30 • VIT24AM035)</strong> • VISAT Elanji
+            Candidate: <strong>Vimal J Mathew (Roll: 30 • VIT24AM035)</strong> • VISAT Elanji
           </p>
         </div>
       </div>
-      <div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span class="pill-tag emerald" id="planned-goals-count">0/0 Goals Done</span>
         <button onclick="window.print()" class="clay-btn">
-          <span>🖨️ Print Timetable Pass</span>
+          <span>🖨️ Print Pass</span>
         </button>
       </div>
     </div>
 
-    <!-- Section 1: Practical & Lab Examinations (The 2 Official S5 Labs) -->
-    <div style="margin-bottom: 32px;">
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-        <span style="font-size: 1.4rem;">🧪</span>
-        <h2 style="font-size: 1.35rem; font-weight: 800; color: #1e1b4b;">Phase 1: Practical Lab Examinations (2 Labs)</h2>
-        <span class="pill-tag amber" style="margin-left: 8px;">Practical Phase</span>
+    <!-- Timeline Summary & Metrics Bar -->
+    <div class="timeline-summary-bar">
+      <div class="timeline-summary-metrics">
+        <div class="timeline-metric-item">
+          <div class="metric-circle" style="color: #4f46e5;">7</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 800; color: #1e293b;">Total Exams</div>
+            <div style="font-size: 0.74rem; color: #64748b; font-weight: 600;">2 Labs + 5 Theory Papers</div>
+          </div>
+        </div>
+
+        <div class="timeline-metric-item">
+          <div class="metric-circle" style="color: #059669;">22</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 800; color: #1e293b;">Study & Revision Days</div>
+            <div style="font-size: 0.74rem; color: #64748b; font-weight: 600;">Gaps between series</div>
+          </div>
+        </div>
+
+        <div class="timeline-metric-item">
+          <div class="metric-circle" style="color: #d97706;">1</div>
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 800; color: #1e293b;">Tight Gap (Dec 2)</div>
+            <div style="font-size: 0.74rem; color: #b45309; font-weight: 600;">Computer Vision bottleneck</div>
+          </div>
+        </div>
       </div>
 
-      <div class="exam-grid">
-        <!-- Lab 1 (Networks Lab) Card -->
-        <div class="exam-card" style="--card-accent: #8B5CF6;">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle" style="color: #7c3aed; font-size: 0.75rem; width: 56px; height: 56px; text-align: center; line-height: 1.1;">NET<br>LAB</div>
-              <span class="subject-code">PCCSL507</span>
-            </div>
-            <h3 class="subject-name">Networks Lab</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>17 Nov 2026, Tuesday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <span>09:30 AM onwards</span>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT Network & Systems Lab</span>
-              </div>
-            </div>
-            <div class="gap-alert normal" style="background: rgba(139, 92, 246, 0.1); color: #6d28d9; border-color: rgba(139, 92, 246, 0.25);">
-              🎯 Scheduled on 17th Nov • Official Code: PCCSL507
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('lab-net')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-              <span>🗓️ Sync to Google Calendar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Lab 2 (Deep Learning Lab) Card -->
-        <div class="exam-card" style="--card-accent: #F43F5E;">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle" style="color: #e11d48; font-size: 0.75rem; width: 56px; height: 56px; text-align: center; line-height: 1.1;">DL<br>LAB</div>
-              <span class="subject-code">PCCML508</span>
-            </div>
-            <h3 class="subject-name">Deep Learning Lab</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>20 Nov 2026, Friday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <span>09:30 AM onwards</span>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT AI & Deep Learning Lab</span>
-              </div>
-            </div>
-            <div class="gap-alert normal" style="background: rgba(244, 63, 94, 0.08); color: #be123c; border-color: rgba(244, 63, 94, 0.25);">
-              🎯 Scheduled on 20th Nov • 3 Days after Networks Lab!
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('lab-dl')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: linear-gradient(135deg, #f43f5e, #e11d48);">
-              <span>🗓️ Sync to Google Calendar</span>
-            </button>
-          </div>
-        </div>
+      <div style="font-size: 0.85rem; color: #475569; font-weight: 600;">
+        💡 <strong>How to plan:</strong> Type your subject goals on each day card below. It auto-saves to your phone!
       </div>
     </div>
 
-    <!-- Section 2: Theory University Examinations (Slots A through E) -->
-    <div>
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-        <span style="font-size: 1.4rem;">📚</span>
-        <h2 style="font-size: 1.35rem; font-weight: 800; color: #1e1b4b;">Phase 2: University Theory Examinations</h2>
-        <span class="pill-tag emerald" style="margin-left: 8px;">Slots A – E</span>
-      </div>
-
-      <div class="exam-grid">
-
-        <!-- Exam 1 -->
-        <div class="exam-card" style="--card-accent: #6366F1;">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle">A</div>
-              <span class="subject-code">PCCST501</span>
-            </div>
-            <h3 class="subject-name">Computer Network</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>23 Nov 2026, Monday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <span>1:30 PM – 4:00 PM (2.5 hrs)</span>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT Exam Hall</span>
-              </div>
-            </div>
-            <div class="gap-alert normal">
-              🎯 Theory Series Opener Exam (Slot A)
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('cn')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px;">
-              <span>🗓️ Add to Google Calendar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Exam 2 -->
-        <div class="exam-card" style="--card-accent: #0284c7;">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle" style="color: #0284c7;">B</div>
-              <span class="subject-code">PCCST502</span>
-            </div>
-            <h3 class="subject-name">Design and Analysis of Algorithm</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>27 Nov 2026, Friday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <strong>2:00 PM – 4:30 PM (Friday Special Slot)</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT Exam Hall</span>
-              </div>
-            </div>
-            <div class="gap-alert normal" style="background: rgba(2, 132, 199, 0.08); color: #0369a1; border-color: rgba(2, 132, 199, 0.2);">
-              ⏳ 3 Full Days Gap (24, 25, 26 Nov)
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('daa')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: linear-gradient(135deg, #0284c7, #0369a1);">
-              <span>🗓️ Add to Google Calendar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Exam 3 -->
-        <div class="exam-card" style="--card-accent: #EC4899;">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle" style="color: #db2777;">C</div>
-              <span class="subject-code">PCCMT503</span>
-            </div>
-            <h3 class="subject-name">Deep Learning Concepts</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>01 Dec 2026, Tuesday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <span>1:30 PM – 4:00 PM (2.5 hrs)</span>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT Exam Hall</span>
-              </div>
-            </div>
-            <div class="gap-alert normal" style="background: rgba(236, 72, 153, 0.08); color: #be185d; border-color: rgba(236, 72, 153, 0.2);">
-              ⏳ 3 Full Days Gap (28, 29, 30 Nov)
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('dlc')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: linear-gradient(135deg, #ec4899, #db2777);">
-              <span>🗓️ Add to Google Calendar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Exam 4 (Tight gap) -->
-        <div class="exam-card" style="--card-accent: #d97706; border: 2px solid rgba(217, 119, 6, 0.35);">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle" style="color: #b45309;">D</div>
-              <span class="subject-code">PBCMS04</span>
-            </div>
-            <h3 class="subject-name">Introduction to Computer Vision</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>03 Dec 2026, Thursday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <span>1:30 PM – 4:00 PM (2.5 hrs)</span>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT Exam Hall</span>
-              </div>
-            </div>
-            <div class="gap-alert" style="background: rgba(217, 119, 6, 0.14);">
-              ⚠️ Tight Gap: Only 1 Revision Day (2nd Dec)!
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('cv')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: linear-gradient(135deg, #d97706, #b45309);">
-              <span>🗓️ Add to Google Calendar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Exam 5 -->
-        <div class="exam-card" style="--card-accent: #059669;">
-          <div>
-            <div class="card-top">
-              <div class="slot-circle" style="color: #047857;">E</div>
-              <span class="subject-code">PECST521</span>
-            </div>
-            <h3 class="subject-name">Software Project Management</h3>
-            <div class="exam-meta-row">
-              <div class="exam-meta-item">
-                <span>📅</span> <strong>07 Dec 2026, Monday</strong>
-              </div>
-              <div class="exam-meta-item">
-                <span>⏰</span> <span>1:30 PM – 4:00 PM (2.5 hrs)</span>
-              </div>
-              <div class="exam-meta-item">
-                <span>🏛️</span> <span>VISAT Exam Hall</span>
-              </div>
-            </div>
-            <div class="gap-alert normal" style="background: rgba(5, 150, 105, 0.08); color: #047857; border-color: rgba(5, 150, 105, 0.2);">
-              ⏳ 3 Full Days Gap (4, 5, 6 Dec) • Final Paper! 🎉
-            </div>
-          </div>
-          <div style="margin-top: 18px;">
-            <button onclick="generateCalendarEvent('spm')" class="clay-btn primary" style="width: 100%; font-size: 0.85rem; padding: 10px; background: linear-gradient(135deg, #059669, #047857);">
-              <span>🗓️ Add to Google Calendar</span>
-            </button>
-          </div>
-        </div>
-
+    <!-- Live Continuous Day-by-Day Calendar Timeline -->
+    <div id="timeline-road-container" class="timeline-road">
+      <!-- Generated dynamically by app.js from 09 Nov to 07 Dec -->
+      <div style="text-align: center; padding: 40px; color: #64748b; font-weight: 700;">
+        Loading continuous examination roadmap...
       </div>
     </div>
 
     <!-- Footer -->
     <footer class="clay-footer">
-      KTU S5 CSE (AI & ML) Exam Hub • VISAT Engineering College, Elanji
+      KTU S5 CSE (AI & ML) Exam Hub • VISAT Engineering College, Elanji • Made for Vimal J Mathew
     </footer>
 
   </div>
