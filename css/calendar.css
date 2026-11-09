@@ -45,6 +45,8 @@
   flex-direction: column;
   justify-content: space-between;
   transition: var(--transition-tactile);
+  position: relative;
+  overflow: hidden;
 }
 
 .cal-cell:hover {
@@ -59,18 +61,57 @@
   min-height: auto;
 }
 
+/* Exam Day Prominent Highlighting */
 .cal-cell.is-exam {
-  border: 2px solid var(--cell-accent, #4f46e5);
-  background: linear-gradient(135deg, #ffffff, rgba(240, 244, 255, 0.95));
+  border: 2.5px solid var(--cell-accent, #4f46e5) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 244, 255, 0.95)) !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.18), var(--clay-shadow-sm) !important;
+}
+
+.cal-cell.is-exam .cal-day-num {
+  color: var(--cell-accent, #4f46e5);
+  font-size: 1.15rem;
 }
 
 .cal-cell.is-prep {
   border-left: 4px solid var(--cell-accent, #059669);
 }
 
+/* TODAY's Active Cell */
 .cal-cell.is-today-cell {
-  border: 2px solid #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  border: 2.5px solid #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25), var(--clay-shadow-md) !important;
+  background: linear-gradient(135deg, #ffffff, rgba(238, 242, 255, 0.9)) !important;
+}
+
+/* PAST / PASSED DAYS: Distinct Red Fill + Crossed Off */
+.cal-cell.is-passed {
+  background: #ffe4e6 !important;
+  border-color: #fda4af !important;
+  box-shadow: inset 1px 1px 3px rgba(225, 29, 72, 0.1) !important;
+}
+
+.cal-cell.is-passed .cal-day-num {
+  color: #9f1239 !important;
+  text-decoration: line-through;
+  opacity: 0.85;
+}
+
+.cal-cell.is-passed .cal-cell-badge {
+  background: #fecdd3 !important;
+  color: #881337 !important;
+  border: 1px solid rgba(225, 29, 72, 0.2) !important;
+}
+
+.cal-cell.is-passed::after {
+  content: "✔ PASSED";
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #e11d48;
+  letter-spacing: 0.04em;
 }
 
 .cal-day-num {
@@ -83,9 +124,9 @@
 .cal-cell-badge {
   font-size: 0.66rem;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 3px 6px;
   border-radius: 6px;
-  line-height: 1.2;
+  line-height: 1.25;
   margin-top: 4px;
   text-align: left;
 }

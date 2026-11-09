@@ -568,6 +568,35 @@ h1, h2, h3, h4, .brand-title, .countdown-num, .slot-circle, .timeline-day-num {
   background: linear-gradient(135deg, rgba(255,255,255,0.99), rgba(238,242,255,0.95));
 }
 
+/* PAST / PASSED DAYS ON TIMELINE LOG: Red Tint + Locked */
+.day-node.is-passed {
+  background: linear-gradient(135deg, #fff1f2, #ffe4e6) !important;
+  border-left: 8px solid #e11d48 !important;
+  border-color: #fecdd3;
+  box-shadow: inset 1px 1px 4px rgba(225, 29, 72, 0.08);
+}
+
+.day-node.is-passed .day-info-text h3 {
+  color: #9f1239;
+}
+
+.day-node.is-passed .date-badge {
+  background: #fecdd3;
+  border: 1px solid #fda4af;
+}
+
+.day-node.is-passed .date-badge-num {
+  color: #9f1239;
+  text-decoration: line-through;
+}
+
+.day-node.is-passed .planner-input {
+  background: #fff5f5;
+  color: #881337;
+  border-color: #fca5a5;
+  cursor: not-allowed;
+}
+
 .day-node.is-exam-day {
   border-left: 8px solid var(--node-accent, #4f46e5);
 }

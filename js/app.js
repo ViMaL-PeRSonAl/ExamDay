@@ -236,6 +236,7 @@ function initCalendarTimeline() {
 
     const exam = TIMELINE_CONFIG.exams[dateKey];
     const isToday = (dateKey === todayStr);
+    const isPast = (dateKey < todayStr);
 
     // Calculate next exam from this specific day
     const nextExamEntry = Object.entries(TIMELINE_CONFIG.exams).find(([d]) => d > dateKey);
@@ -250,18 +251,23 @@ function initCalendarTimeline() {
 
     // Determine card classes
     let cardClass = "day-node";
-    if (isToday) cardClass += " is-today";
+    if (isPast) {
+      cardClass += " is-passed";
+    } else if (isToday) {
+      cardClass += " is-today";
+    }
+    
     if (exam) {
       cardClass += " is-exam-day";
     } else {
       cardClass += " is-study-day";
     }
-    if (isTight) cardClass += " is-tight-gap";
+    if (isTight && !isPast) cardClass += " is-tight-gap";
 
-    const customPlan = savedPlans[dateKey] || { text: "", done: false };
+    const customPlan = savedPlans[dateKey] || { text: "", done: isPast }; // Past days are automatically done/concluded
 
     html += `
-      <div class="${cardClass}" id="day-${dateKey}" style="--node-accent: ${exam ? exam.accent : '#059669'};">
+      <div class="${cardClass}" id="day-${dateKey}" style="--node-accent: ${exam ? exam.accent : (isPast ? '#e11d48' : '#059669')};">
         <div class="day-node-header">
           <div class="day-date-group">
             <div class="date-badge">
@@ -273,15 +279,16 @@ function initCalendarTimeline() {
               <h3>
                 ${exam ? `⚡ ${exam.title} (${exam.code})` : (isTight ? `⚠️ Critical Revision Buffer: Computer Vision` : `📖 Study & Preparation Day`)}
                 ${isToday ? `<span class="pill-tag emerald" style="font-size:0.75rem; padding:2px 10px;">🌟 TODAY</span>` : ''}
+                ${isPast ? `<span class="pill-tag rose" style="font-size:0.72rem; padding:2px 8px;">🔒 CONCLUDED / PASSED</span>` : ''}
               </h3>
               <p>
-                ${exam ? `⏰ <strong>${exam.time}</strong> • 🏛️ ${exam.venue} • ${exam.slot}` : (nextExamDistanceText ? `⏳ <strong>${nextExamDistanceText}</strong>` : '🎯 Final Preparation Buffer')}
+                ${exam ? `⏰ <strong>${exam.time}</strong> • 🏛️ ${exam.venue} • ${exam.slot}` : (isPast ? '✅ Day Concluded' : (nextExamDistanceText ? `⏳ <strong>${nextExamDistanceText}</strong>` : '🎯 Final Preparation Buffer'))}
               </p>
             </div>
           </div>
           <div style="display:flex; align-items:center; gap:8px;">
-            ${exam ? `<span class="pill-tag" style="background:${exam.accent}20; color:${exam.accent}; border-color:${exam.accent}40;">${exam.badge}</span>` : `<span class="pill-tag emerald">Study Session</span>`}
-            ${exam ? `<button onclick="generateGCalFromDate('${dateKey}')" class="clay-btn" style="padding:6px 14px; font-size:0.78rem;">🗓️ GCal</button>` : ''}
+            ${exam ? `<span class="pill-tag" style="background:${exam.accent}20; color:${exam.accent}; border-color:${exam.accent}40;">${exam.badge}</span>` : (isPast ? `<span class="pill-tag rose">Completed</span>` : `<span class="pill-tag emerald">Study Session</span>`)}
+            ${exam && !isPast ? `<button onclick="generateGCalFromDate('${dateKey}')" class="clay-btn" style="padding:6px 14px; font-size:0.78rem;">🗓️ GCal</button>` : ''}
           </div>
         </div>
 
@@ -289,9 +296,10 @@ function initCalendarTimeline() {
         <div class="day-planner-box">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
             <div style="font-size:0.82rem; font-weight:700; color:#475569;">
-              📝 <strong>Day Plan & Goal:</strong>
+              📝 <strong>Day Plan & Goal:</strong> ${isPast ? '<span style="color:#e11d48;">(Concluded & Locked)</span>' : ''}
             </div>
             <!-- Quick Subject Tags -->
+            ${!isPast ? `
             <div class="planner-quick-tags">
               <span style="font-size:0.72rem; color:#94a3b8; font-weight:700;">Quick add:</span>
               <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'Networks')">Networks</button>
@@ -300,22 +308,25 @@ function initCalendarTimeline() {
               <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'Computer Vision')">Vision</button>
               <button class="quick-tag-btn" onclick="addQuickGoal('${dateKey}', 'SPM')">SPM</button>
             </div>
+            ` : ''}
           </div>
 
           <div class="planner-input-row">
             <input type="text" 
                    id="plan-input-${dateKey}" 
                    class="planner-input" 
-                   placeholder="${exam ? 'Morning revision / formula checklist before entering hall...' : 'What will you master today? (e.g. Module 1-2 + Lab Record)...'}"
+                   ${isPast ? 'readonly' : ''}
+                   placeholder="${isPast ? 'Day finished and concluded' : (exam ? 'Morning revision checklist before hall...' : 'What will you master today?...')}"
                    value="${escapeHtml(customPlan.text)}"
                    oninput="handlePlanChange('${dateKey}', this.value)"
             />
-            <button class="clay-btn ${customPlan.done ? 'primary' : ''}" 
+            <button class="clay-btn ${(customPlan.done || isPast) ? 'primary' : ''}" 
                     id="plan-check-${dateKey}" 
+                    ${isPast ? 'disabled' : ''}
                     onclick="togglePlanDone('${dateKey}')" 
                     style="padding: 10px 18px; font-size: 0.85rem;"
-                    title="Mark today's target achieved">
-              <span>${customPlan.done ? '✅ Goal Achieved' : '⭕ Mark Done'}</span>
+                    title="${isPast ? 'Concluded' : 'Mark today target achieved'}">
+              <span>${(customPlan.done || isPast) ? '✅ Goal Achieved' : '⭕ Mark Done'}</span>
             </button>
           </div>
         </div>
@@ -437,10 +448,42 @@ function resetChecklist() {
   updateChecklistCounter();
 }
 
+// 4. Dynamic Auto-State Updater for Static Calendar Grids on study-plan.html
+function updateStaticCalendarPastStates() {
+  const todayStr = formatDateISO(new Date());
+  
+  // Find all calendar cells with numbers in study-plan.html
+  const cells = document.querySelectorAll(".calendar-view-card .cal-cell:not(.empty)");
+  if (!cells.length) return;
+
+  cells.forEach(cell => {
+    const dayNumEl = cell.querySelector(".cal-day-num");
+    if (!dayNumEl) return;
+    const dayNum = parseInt(dayNumEl.textContent.trim(), 10);
+    
+    // Check if cell belongs to Nov or Dec
+    const isNov = cell.closest(".calendar-view-card").textContent.includes("November");
+    const mStr = isNov ? "11" : "12";
+    const dateKey = `2026-${mStr}-${String(dayNum).padStart(2, '0')}`;
+
+    if (dateKey < todayStr) {
+      cell.classList.add("is-passed");
+      cell.classList.remove("is-today-cell");
+    } else if (dateKey === todayStr) {
+      cell.classList.add("is-today-cell");
+      cell.classList.remove("is-passed");
+    } else {
+      cell.classList.remove("is-passed");
+      cell.classList.remove("is-today-cell");
+    }
+  });
+}
+
 // Global initialization
 document.addEventListener("DOMContentLoaded", () => {
   initCountdown();
   initCalendarTimeline();
   initChecklist();
   updateTotalPlanCount();
+  updateStaticCalendarPastStates();
 });
