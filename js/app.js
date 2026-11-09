@@ -40,13 +40,13 @@ const EXAM_DATA = {
       slot: "PCCML508",
       dateStr: "2026-11-20T09:30:00+05:30",
       endDateStr: "2026-11-20T16:30:00+05:30",
-      day: "Date TBA (Post Nov 17)",
-      dateFormatted: "Mid/Late Nov 2026 (Approx after Net Lab)",
+      day: "Friday",
+      dateFormatted: "20 Nov 2026",
       time: "09:30 AM onwards",
-      note: "KTU Code: PCCML508. ANN Backprop, CNN classification, and PyTorch/TensorFlow implementations.",
+      note: "Confirmed on 20.11.2026, Friday. ANN Backprop, CNN classification, and PyTorch/TensorFlow implementations.",
       accent: "#F43F5E",
       isLab: true,
-      badge: "External Examiner Choice"
+      badge: "20 Nov Confirmed"
     },
     {
       id: "cn",
